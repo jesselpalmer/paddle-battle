@@ -1,0 +1,18 @@
+{
+  "name": "paddle-battle",
+  "version": "1.0.0",
+  "description": "Pong clone made with HTML5 Canvas and the [collision.js](http://www.collisionjs.org) library.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mission-bay-games/paddle-battle.git"
+  },
+  "author": "Jesse Palmer <jesse@missionbaygames.com> (http://missionbaygames.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mission-bay-games/paddle-battle/issues"
+  },
+  "homepage": "https://github.com/mission-bay-games/paddle-battle#readme"
+}
