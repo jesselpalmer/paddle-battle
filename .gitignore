@@ -62,3 +62,8 @@ typings/
 # Intellij
 .idea
 
+# Compiled directory
+dist
+
+# Intellij
+.idea
