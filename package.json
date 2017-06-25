@@ -11,5 +11,8 @@
   "bugs": {
     "url": "https://github.com/jesselpalmer/paddle-battle/issues"
   },
-  "homepage": "https://github.com/jesselpalmer/paddle-battle#readme"
+  "homepage": "https://github.com/jesselpalmer/paddle-battle#readme",
+  "dependencies": {
+    "express": "^4.15.3"
+  }
 }
