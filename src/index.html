@@ -2,18 +2,34 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#000000">
 	<title>Paddle Battle</title>
-	<link rel="stylesheet" href="css/style-1.0.css">
+	<link rel="manifest" href="./manifest.json">
+	<link rel="stylesheet" href="./css/style-1.0.css">
+	<link rel="apple-touch-icon" href="./images/icons/icon-192x192.png"">
 </head>
 <body>
 	<canvas id="canvas">
 		Your broswer does not support HTML5 Canvas.
 	</canvas>
-	<script src="js/libs/jquery-1.7.1.min.js"></script>
-	<script src="js/libs/collision-1.0.4.js"></script>
-	<script src="js/paddlebattle-1.0.0.js"></script>
-	<audio src="resources/blup.mp3" id="blup"></audio>
-	<audio src="resources/youWin.mp3" id="youWin"></audio>
-	<audio src="resources/youLose.mp3" id="youLose"></audio>
+	<script src="./js/libs/jquery-1.7.1.min.js"></script>
+	<script src="./js/libs/collision-1.0.4.js"></script>
+	<script src="./js/paddlebattle-1.0.0.js"></script>
+	<audio src="./resources/blup.mp3" id="blup"></audio>
+	<audio src="./resources/youWin.mp3" id="youWin"></audio>
+	<audio src="./resources/youLose.mp3" id="youLose"></audio>
+	<script>
+		if ('serviceWorker' in navigator) {
+  		navigator.serviceWorker.register('./sw.js')
+  			.then((reg) => {
+    			// registration worked
+    			console.log('Registration succeeded. Scope is ' + reg.scope);
+  			}).catch((error) => {
+    			// registration failed
+    			console.log('Registration failed with ' + error);
+  		});
+		}
+	</script>
 </body>
 </html>
