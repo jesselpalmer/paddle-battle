@@ -67,3 +67,6 @@ dist
 
 # Intellij
 .idea
+
+# Firebase
+.firebase
