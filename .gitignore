@@ -70,3 +70,6 @@ dist
 
 # Firebase
 .firebase
+
+#Mac OS files
+.DS_Store
