@@ -1,6 +1,7 @@
 {
     "name": "Paddle Battle",
     "short_name": "Paddle Battle",
+    "version": "1.0.0",
     "theme_color": "#000000",
     "background_color": "#000000",
     "display": "fullscreen",
