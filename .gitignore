@@ -71,5 +71,5 @@ dist
 # Firebase
 .firebase
 
-#Mac OS files
+# Mac OS files
 .DS_Store
