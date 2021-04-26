@@ -46,12 +46,8 @@ function canvasApp() {
     /**
      * Game object constructors
      */
-
-    /**
-     * A Ball.
-     * @constructor
-     */
-    function Ball() {
+     class Ball {
+      constructor() {
         this.width = SCREEN_WIDTH * 0.012;
         this.defaultSpeed = 5;
         this.speed = this.defaultSpeed;
@@ -62,6 +58,7 @@ function canvasApp() {
         this.x2 = this.x1 + this.width;
         this.y1 = 0;
         this.y2 = 0;
+      }
     }
 
     /**
