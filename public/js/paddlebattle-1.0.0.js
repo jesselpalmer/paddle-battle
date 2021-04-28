@@ -1,16 +1,17 @@
-/**
- * @fileoverview Logic for Paddle Battle game.
- * @author Jesse L. Palmer
- */
+const constants = {
+  colors: {
+    BALL_COLOR: 'white',
+    PADDLE_COLOR: 'white',
+    SCREEN_COLOR: 'black',
+    INIT_SCORE_COLOR: 'white',
+    FINAL_POINT_SCORE_COLOR: 'red'
+  }
+}
 
 /**
- * Uses the Modernizr library to test if the broswer supports Canvas.
- * @return {boolean} Returns true if Canvas is supported by the broswer.
+ * @fileoverview Logic for Paddle Battle game.
+ * @author Jesse Palmer
  */
-function canvasSupport() {
-    'use strict';
-    return Modernizr.canvas;
-}
 
 /**
  * Main application.
@@ -18,15 +19,10 @@ function canvasSupport() {
 function canvasApp() {
     'use strict';
 
-    if (!canvasSupport) {
-        return;
-    }
-
     var canvas = document.getElementById('canvas'),
         context = canvas.getContext('2d'),
         SCREEN_WIDTH = $(document).width(),
         SCREEN_HEIGHT = $(document).height(),
-        SCREEN_COLOR = '#000',
         ball = null,
         paddleOne = null,
         paddleTwo = null,
@@ -44,9 +40,15 @@ function canvasApp() {
     canvas.height = SCREEN_HEIGHT;
 
     /**
-     * Game object constructors
+     * Game object classes
      */
+
+    /** Class representing a point. */
      class Ball {
+
+      /**
+       * Creates a ball
+       */ 
       constructor() {
         this.width = SCREEN_WIDTH * 0.012;
         this.defaultSpeed = 5;
@@ -64,33 +66,41 @@ function canvasApp() {
     /**
      * A Paddle.
      * @param {number} x1 The x1 position of the paddle.
-     * @constructor
      */
-    function Paddle(x1) {
+    class Paddle {
+
+      /**
+        * Creates a Paddle.
+        * @param {number} x1 The x1 position of the paddle.
+        */
+      constructor(x1) {
         this.height = SCREEN_HEIGHT * 0.10;
         this.width = SCREEN_WIDTH * 0.014;
-        this.color = '#fff';
+        this.color = constants.colors.PADDLE_COLOR;
         this.speed = 6;
         this.x1 = x1;
         this.y1 = (SCREEN_HEIGHT - SCREEN_HEIGHT * 0.10) / 2;
         this.x2 = this.x1 + this.width;
         this.y2 = this.y1 + this.height;
-        this.moveUp = function() {
-            if (this.y1 <= 0) {
-                this.y1 = 0;
-            } else {
-                this.y1 -= this.speed;
-            }
-            this.y2 = this.y1 + this.height;
-        };
-        this.moveDown = function() {
-            if (this.y2 > SCREEN_HEIGHT) {
-                this.y1 = SCREEN_HEIGHT - this.height;
-            } else {
-                this.y1 += this.speed;
-            }
-            this.y2 = this.y1 + this.height;
-        };
+      }
+
+      moveUp() {
+        if (this.y1 <= 0) {
+          this.y1 = 0;
+        } else {
+            this.y1 -= this.speed;
+        }
+        this.y2 = this.y1 + this.height;
+      }
+
+      moveDown() {
+        if (this.y2 > SCREEN_HEIGHT) {
+          this.y1 = SCREEN_HEIGHT - this.height;
+        } else {
+          this.y1 += this.speed;
+        }
+        this.y2 = this.y1 + this.height;
+      }
     }
 
     /**
@@ -101,14 +111,14 @@ function canvasApp() {
      * Updates the position of the ball.
      */
     function updateBall() {
-        ball.radians = ball.angle * Math.PI / 180;
-        ball.xunits = Math.cos(ball.radians) * ball.speed;
-        ball.yunits = Math.sin(ball.radians) * ball.speed;
+      ball.radians = ball.angle * Math.PI / 180;
+      ball.xunits = Math.cos(ball.radians) * ball.speed;
+      ball.yunits = Math.sin(ball.radians) * ball.speed;
 
-        if (ball.trips % 2 === 0 && ball.speed < ball.speedLimit) {
-            ball.trips += 1;
-            ball.speed += 1;
-        }
+      if (ball.trips % 2 === 0 && ball.speed < ball.speedLimit) {
+        ball.trips += 1;
+        ball.speed += 1;
+      }
     }
 
     /**
@@ -124,27 +134,27 @@ function canvasApp() {
         ball.speed = ball.defaultSpeed;
         switch (situation) {
         case 'playerOneScores':
-            randomNumber = Math.floor(Math.random() * 2);
-            break;
+          randomNumber = Math.floor(Math.random() * 2);
+          break;
         case 'playerTwoScores':
-            randomNumber = Math.floor(Math.random() * 2) + 2;
-            break;
+          randomNumber = Math.floor(Math.random() * 2) + 2;
+          break;
         case 'startGame':
-            randomNumber = Math.floor(Math.random() * 4);
-            break;
+          randomNumber = Math.floor(Math.random() * 4);
+          break;
         }
 
         switch (randomNumber) {
-        case 0:
+          case 0:
             ball.angle = 45;
             break;
-        case 1:
+          case 1:
             ball.angle = 315;
             break;
-        case 2:
+          case 2:
             ball.angle = 135;
             break;
-        case 3:
+          case 3:
             ball.angle = 225;
             break;
         }
@@ -403,6 +413,7 @@ function canvasApp() {
         if (gameStatus !== 'over') {
             youLose.play();
         }
+
         drawScreenText('YOU LOSE!', 'Click  on the screen to start.');
         players = 0;
         gameStatus = 'over';
@@ -415,6 +426,7 @@ function canvasApp() {
         if (gameStatus !== 'over') {
             youWin.play();
         }
+
         drawScreenText('YOU WIN!', 'Click on the screen to start.');
         players = 0;
         gameStatus = 'over';
@@ -427,7 +439,7 @@ function canvasApp() {
     function scoresCheck() {
         switch (scoreOne) {
         case 9:
-            scoreOneColor = '#f00';
+            scoreOneColor = 'red';
             break;
         case 10:
             paddleOneWinner();
@@ -436,7 +448,7 @@ function canvasApp() {
 
         switch (scoreTwo) {
         case 9:
-            scoreTwoColor = '#f00';
+            scoreTwoColor = 'red';
             break;
         case 10:
             paddleTwoWinner();
@@ -448,7 +460,7 @@ function canvasApp() {
      * Draws the background of the screen.
      */
     function drawBackground() {
-        context.fillStyle = SCREEN_COLOR;
+        context.fillStyle = constants.colors.SCREEN_COLOR;
         context.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     }
 
