@@ -293,11 +293,11 @@ function canvasApp() {
     function ballMovingAwayPaddleActions(paddle) {
         var dy = findPaddlePositionToCenter(paddle);
 
-        if ((isPaddleBelowCenter(dy) === true) &&
-                (isPaddleAtCenter(dy) === false)) {
+        if ((isPaddleBelowCenter(dy)) &&
+                (!isPaddleAtCenter(dy))) {
             paddle.moveUp();
-        } else if ((isPaddleAboveCenter(dy) === true) &&
-                (isPaddleAtCenter(dy) === false)) {
+        } else if ((isPaddleAboveCenter(dy)) &&
+                (!isPaddleAtCenter(dy))) {
             paddle.moveDown();
         }
     }
