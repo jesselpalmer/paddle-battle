@@ -132,6 +132,7 @@ function canvasApp() {
         var randomNumber = 0;
         ball.trips = 1;
         ball.speed = ball.defaultSpeed;
+				
         switch (situation) {
         case 'playerOneScores':
           randomNumber = Math.floor(Math.random() * 2);
